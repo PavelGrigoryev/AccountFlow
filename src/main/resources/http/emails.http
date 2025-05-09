@@ -1,0 +1,9 @@
+###save
+POST http://localhost:8080/emails
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "email": "maria2.personal@example.com"
+}

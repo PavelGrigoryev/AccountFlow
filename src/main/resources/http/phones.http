@@ -1,0 +1,9 @@
+###save
+POST http://localhost:8080/phones
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "phone": "79297865415"
+}
