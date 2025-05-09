@@ -22,9 +22,9 @@ public class EmailDataController {
 
     private final EmailDataService emailDataService;
 
-    @PostMapping("/{userId}")
-    public ResponseEntity<EmailDataResponse> save(@PathVariable Long userId, @RequestBody EmailDataRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(emailDataService.save(userId, request));
+    @PostMapping
+    public ResponseEntity<EmailDataResponse> save(@RequestBody EmailDataRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(emailDataService.save(request));
     }
 
     @PatchMapping("/{id}")

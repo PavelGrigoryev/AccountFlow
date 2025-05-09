@@ -4,10 +4,10 @@ import com.grigoryev.accountflow.dto.email.EmailDataRequest;
 import com.grigoryev.accountflow.dto.email.EmailDataResponse;
 import com.grigoryev.accountflow.model.EmailData;
 import com.grigoryev.accountflow.model.User;
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public abstract class EmailDataMapper {
+@Component
+public class EmailDataMapper {
 
     public EmailData toEmailData(EmailDataRequest request, User user) {
         return new EmailData().setEmail(request.email())

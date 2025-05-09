@@ -4,10 +4,10 @@ import com.grigoryev.accountflow.dto.phone.PhoneDataRequest;
 import com.grigoryev.accountflow.dto.phone.PhoneDataResponse;
 import com.grigoryev.accountflow.model.PhoneData;
 import com.grigoryev.accountflow.model.User;
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public abstract class PhoneDataMapper {
+@Component
+public class PhoneDataMapper {
 
     public PhoneData toPhoneData(PhoneDataRequest request, User user) {
         return new PhoneData().setPhone(request.phone())

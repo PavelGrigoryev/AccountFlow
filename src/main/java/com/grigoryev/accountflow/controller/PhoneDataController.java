@@ -22,9 +22,9 @@ public class PhoneDataController {
 
     private final PhoneDataService phoneDataService;
 
-    @PostMapping("/{userId}")
-    public ResponseEntity<PhoneDataResponse> save(@PathVariable Long userId, @RequestBody PhoneDataRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(phoneDataService.save(userId, request));
+    @PostMapping
+    public ResponseEntity<PhoneDataResponse> save(@RequestBody PhoneDataRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(phoneDataService.save(request));
     }
 
     @PatchMapping("/{id}")
