@@ -19,7 +19,7 @@ USER_ID: 4
 }
 
 ###delete
-DELETE http://localhost:8080/emails/18
+DELETE http://localhost:8080/emails/19
 Accept: application/json
 Content-Type: application/json
 USER_ID: 4

@@ -8,9 +8,9 @@ import com.grigoryev.accountflow.interceptor.UserHolder;
 import com.grigoryev.accountflow.mapper.EmailDataMapper;
 import com.grigoryev.accountflow.model.EmailData;
 import com.grigoryev.accountflow.repository.EmailDataRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.function.Supplier;
 
@@ -39,7 +39,7 @@ public class EmailDataService {
     }
 
     public DeleteResponse delete(Long id) {
-        return emailDataRepository.findById(id)
+        return emailDataRepository.findWithUserById(id)
                 .filter(data -> data.getUser().getId().equals(userHolder.getUser().getId()))
                 .map(data -> {
                     emailDataRepository.deleteById(id);

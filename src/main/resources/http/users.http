@@ -1,0 +1,3 @@
+###searchUsers
+GET http://localhost:8080/users/search?name=Иван&dateOfBirth=1990-01-14&phone=79109876543&email=ivan.ivanov@example.com&page=0&size=10
+Accept: application/json
