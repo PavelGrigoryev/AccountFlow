@@ -1,9 +1,22 @@
 ###save
-POST http://localhost:8080/phones
+POST http://localhost:8080/phones/1
 Accept: application/json
 Content-Type: application/json
 
 {
-  "userId": 1,
-  "phone": "79297865415"
+  "phone": "79297865416"
 }
+
+###update
+PATCH http://localhost:8080/phones/43
+Accept: application/json
+Content-Type: application/json
+
+{
+  "phone": "79297865421"
+}
+
+###delete
+DELETE http://localhost:8080/phones/43
+Accept: application/json
+Content-Type: application/json

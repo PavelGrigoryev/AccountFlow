@@ -1,9 +1,22 @@
 ###save
-POST http://localhost:8080/emails
+POST http://localhost:8080/emails/2
 Accept: application/json
 Content-Type: application/json
 
 {
-  "userId": 1,
-  "email": "maria2.personal@example.com"
+  "email": "maria3.personal@example.com"
 }
+
+###update
+PATCH http://localhost:8080/emails/18
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "maria4.personal@example.com"
+}
+
+###delete
+DELETE http://localhost:8080/emails/18
+Accept: application/json
+Content-Type: application/json
