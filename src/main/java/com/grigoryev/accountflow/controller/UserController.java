@@ -1,5 +1,6 @@
 package com.grigoryev.accountflow.controller;
 
+import com.grigoryev.accountflow.aspect.Loggable;
 import com.grigoryev.accountflow.dto.user.UserSearchRequest;
 import com.grigoryev.accountflow.dto.user.UserSearchResponse;
 import com.grigoryev.accountflow.service.UserService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Loggable
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")

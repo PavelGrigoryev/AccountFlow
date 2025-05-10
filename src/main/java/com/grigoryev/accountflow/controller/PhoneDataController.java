@@ -1,5 +1,6 @@
 package com.grigoryev.accountflow.controller;
 
+import com.grigoryev.accountflow.aspect.Loggable;
 import com.grigoryev.accountflow.dto.DeleteResponse;
 import com.grigoryev.accountflow.dto.phone.PhoneDataRequest;
 import com.grigoryev.accountflow.dto.phone.PhoneDataResponse;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Loggable
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/phones")

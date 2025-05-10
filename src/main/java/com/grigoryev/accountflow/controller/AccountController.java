@@ -1,5 +1,6 @@
 package com.grigoryev.accountflow.controller;
 
+import com.grigoryev.accountflow.aspect.Loggable;
 import com.grigoryev.accountflow.dto.account.AccountResponse;
 import com.grigoryev.accountflow.service.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Loggable
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/accounts")

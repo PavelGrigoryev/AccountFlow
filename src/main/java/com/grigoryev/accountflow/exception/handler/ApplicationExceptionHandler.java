@@ -1,5 +1,6 @@
 package com.grigoryev.accountflow.exception.handler;
 
+import com.grigoryev.accountflow.aspect.Loggable;
 import com.grigoryev.accountflow.dto.error.IncorrectData;
 import com.grigoryev.accountflow.dto.error.ValidationErrorResponse;
 import com.grigoryev.accountflow.dto.error.Violation;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 
+@Loggable
 @ControllerAdvice
 public class ApplicationExceptionHandler {
 
