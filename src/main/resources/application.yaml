@@ -18,3 +18,8 @@ jwt:
   expiration-time: 900000
 redis:
   ttl: 15
+balance:
+  fixed-rate: 30000
+  initial-delay: 30000
+  increase-multiplier: 1.1
+  max-multiplier: 2.07
