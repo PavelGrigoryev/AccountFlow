@@ -12,6 +12,7 @@ import com.grigoryev.accountflow.model.User;
 import com.grigoryev.accountflow.repository.UserRepository;
 import com.grigoryev.accountflow.repository.spec.UserSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -40,6 +41,7 @@ public class UserService {
                 .toList();
     }
 
+    @Cacheable(value = "phone-tokens", key = "#request.phone()")
     public LoginResponse loginByPhone(LoginPhoneRequest request) {
         User user = userRepository.findByPhone(request.phone())
                 .orElseThrow(() -> new UserNotFoundException("User with phone = %s is not found".formatted(request.phone())));
@@ -49,6 +51,7 @@ public class UserService {
         return new LoginResponse(jwtService.generateToken(user.getId()));
     }
 
+    @Cacheable(value = "email-tokens", key = "#request.email()")
     public LoginResponse loginByEmail(LoginEmailRequest request) {
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new UserNotFoundException("User with email = %s is not found".formatted(request.email())));

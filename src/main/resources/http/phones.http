@@ -6,7 +6,7 @@ Accept: application/json
 POST http://localhost:8080/phones
 Accept: application/json
 Content-Type: application/json
-USER_ID: 4
+USER_ID: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzQ2ODgwNzkzLCJleHAiOjE3NDY4ODE2OTN9.NIb6NqA9DIUMbWXxmXB059qJv1u4MkjOQsz2UbPszN8T8bhFbM4aJXqUQFPUo1Kp
 
 {
   "phone": "79297865455"
@@ -16,14 +16,14 @@ USER_ID: 4
 PATCH http://localhost:8080/phones/3
 Accept: application/json
 Content-Type: application/json
-USER_ID: 2
+USER_ID: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzQ2ODgwNzkzLCJleHAiOjE3NDY4ODE2OTN9.NIb6NqA9DIUMbWXxmXB059qJv1u4MkjOQsz2UbPszN8T8bhFbM4aJXqUQFPUo1Kp
 
 {
   "phone": "79297865459"
 }
 
 ###delete
-DELETE http://localhost:8080/phones/1
+DELETE http://localhost:8080/phones/2
 Accept: application/json
 Content-Type: application/json
-USER_ID: 1
+USER_ID: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzQ2ODgwNzkzLCJleHAiOjE3NDY4ODE2OTN9.NIb6NqA9DIUMbWXxmXB059qJv1u4MkjOQsz2UbPszN8T8bhFbM4aJXqUQFPUo1Kp

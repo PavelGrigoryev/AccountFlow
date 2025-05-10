@@ -1,4 +1,6 @@
 package com.grigoryev.accountflow.dto.login;
 
-public record LoginResponse(String token) {
+import java.io.Serializable;
+
+public record LoginResponse(String token) implements Serializable {
 }

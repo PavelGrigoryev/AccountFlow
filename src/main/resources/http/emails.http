@@ -6,17 +6,17 @@ Accept: application/json
 POST http://localhost:8080/emails
 Accept: application/json
 Content-Type: application/json
-USER_ID: 4
+USER_ID: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzQ2ODgxMTk0LCJleHAiOjE3NDY4ODIwOTR9.XG6LiFAnIQbjyasktpl0Wb4ieO9O3ztiUVdbjentudclfEtI8aJwxQbmim-jqz-L
 
 {
   "email": "maria43.personal@example.com"
 }
 
 ###update
-PATCH http://localhost:8080/emails/6
+PATCH http://localhost:8080/emails/1
 Accept: application/json
 Content-Type: application/json
-USER_ID: 4
+USER_ID: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzQ2ODgwNjU2LCJleHAiOjE3NDY4ODA3MTZ9.Ex3wTJogcRwm_JLMyetUaVWgOCSQK81jaMGP0mfpzvTsBI_fRDXGyHux4-6WrQCT
 
 {
   "email": "maria8.personal@example.com"
@@ -26,4 +26,4 @@ USER_ID: 4
 DELETE http://localhost:8080/emails/24
 Accept: application/json
 Content-Type: application/json
-USER_ID: 4
+USER_ID: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzQ2ODgwNjU2LCJleHAiOjE3NDY4ODA3MTZ9.Ex3wTJogcRwm_JLMyetUaVWgOCSQK81jaMGP0mfpzvTsBI_fRDXGyHux4-6WrQCT
