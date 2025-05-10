@@ -1,4 +1,6 @@
 package com.grigoryev.accountflow.dto.email;
 
-public record EmailDataResponse(Long id, String email) {
+import java.io.Serializable;
+
+public record EmailDataResponse(Long id, String email) implements Serializable {
 }

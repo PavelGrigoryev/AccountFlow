@@ -1,4 +1,6 @@
 package com.grigoryev.accountflow.dto.phone;
 
-public record PhoneDataResponse(Long id, String phone) {
+import java.io.Serializable;
+
+public record PhoneDataResponse(Long id, String phone) implements Serializable {
 }

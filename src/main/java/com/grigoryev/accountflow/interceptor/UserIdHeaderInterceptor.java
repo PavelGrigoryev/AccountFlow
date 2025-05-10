@@ -23,19 +23,22 @@ public class UserIdHeaderInterceptor implements HandlerInterceptor {
     public boolean preHandle(@NonNull HttpServletRequest request,
                              @NonNull HttpServletResponse response,
                              @NonNull Object handler) {
-        Long userId;
-        try {
-            String userIdHeader = request.getHeader("USER_ID");
-            if (StringUtils.isBlank(userIdHeader)) {
-                throw new UserIdHeaderNotValidException("USER_ID is null or blank");
+        if (!"GET".equalsIgnoreCase(request.getMethod())) {
+            Long userId;
+            try {
+                String userIdHeader = request.getHeader("USER_ID");
+                if (StringUtils.isBlank(userIdHeader)) {
+                    throw new UserIdHeaderNotValidException("USER_ID is null or blank");
+                }
+                userId = Long.parseLong(userIdHeader);
+            } catch (NumberFormatException e) {
+                throw new UserIdHeaderNotValidException("USER_ID is not a valid number");
             }
-            userId = Long.parseLong(userIdHeader);
-        } catch (NumberFormatException e) {
-            throw new UserIdHeaderNotValidException("USER_ID is not a valid number");
+
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new UserNotFoundException("User with id = %d is not found".formatted(userId)));
+            userHolder.setUser(user);
         }
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User with id = %d is not found".formatted(userId)));
-        userHolder.setUser(user);
         return true;
     }
 

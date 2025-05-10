@@ -1,3 +1,7 @@
+###findById
+GET http://localhost:8080/emails/1
+Accept: application/json
+
 ###save
 POST http://localhost:8080/emails
 Accept: application/json
@@ -5,21 +9,21 @@ Content-Type: application/json
 USER_ID: 4
 
 {
-  "email": "maria3.personal@example.com"
+  "email": "maria43.personal@example.com"
 }
 
 ###update
-PATCH http://localhost:8080/emails/19
+PATCH http://localhost:8080/emails/6
 Accept: application/json
 Content-Type: application/json
 USER_ID: 4
 
 {
-  "email": "maria7.personal@example.com"
+  "email": "maria8.personal@example.com"
 }
 
 ###delete
-DELETE http://localhost:8080/emails/19
+DELETE http://localhost:8080/emails/24
 Accept: application/json
 Content-Type: application/json
 USER_ID: 4

@@ -10,6 +10,9 @@ import com.grigoryev.accountflow.model.PhoneData;
 import com.grigoryev.accountflow.repository.PhoneDataRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,12 +28,22 @@ public class PhoneDataService {
     private final PhoneDataMapper phoneDataMapper;
     private final UserHolder userHolder;
 
+    @Transactional(readOnly = true)
+    @Cacheable(value = "phones", key = "#id")
+    public PhoneDataResponse findById(Long id) {
+        return phoneDataRepository.findById(id)
+                .map(phoneDataMapper::toPhoneDataResponse)
+                .orElseThrow(throwPhoneDataNotFoundException(id));
+    }
+
+    @CachePut(value = "phones", key = "#result.id()")
     public PhoneDataResponse save(PhoneDataRequest request) {
         PhoneData phoneData = phoneDataMapper.toPhoneData(request, userHolder.getUser());
         PhoneData saved = phoneDataRepository.save(phoneData);
         return phoneDataMapper.toPhoneDataResponse(saved);
     }
 
+    @CachePut(value = "phones", key = "#result.id()")
     public PhoneDataResponse update(Long id, PhoneDataRequest request) {
         return phoneDataRepository.findWithUserById(id)
                 .filter(data -> data.getUser().getId().equals(userHolder.getUser().getId()))
@@ -40,6 +53,7 @@ public class PhoneDataService {
                 .orElseThrow(throwPhoneDataNotFoundException(id));
     }
 
+    @CacheEvict(value = "phones", key = "#id")
     public DeleteResponse delete(Long id) {
         return phoneDataRepository.findWithUserById(id)
                 .filter(data -> data.getUser().getId().equals(userHolder.getUser().getId()))

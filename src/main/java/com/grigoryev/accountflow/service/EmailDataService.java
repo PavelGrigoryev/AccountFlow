@@ -9,6 +9,9 @@ import com.grigoryev.accountflow.mapper.EmailDataMapper;
 import com.grigoryev.accountflow.model.EmailData;
 import com.grigoryev.accountflow.repository.EmailDataRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,12 +26,22 @@ public class EmailDataService {
     private final EmailDataMapper emailDataMapper;
     private final UserHolder userHolder;
 
+    @Transactional(readOnly = true)
+    @Cacheable(value = "emails", key = "#id")
+    public EmailDataResponse findById(Long id) {
+        return emailDataRepository.findById(id)
+                .map(emailDataMapper::toEmailDataResponse)
+                .orElseThrow(throwEmailDataNotFoundException(id));
+    }
+
+    @CachePut(value = "emails", key = "#result.id()")
     public EmailDataResponse save(EmailDataRequest request) {
         EmailData emailData = emailDataMapper.toEmailData(request, userHolder.getUser());
         EmailData saved = emailDataRepository.save(emailData);
         return emailDataMapper.toEmailDataResponse(saved);
     }
 
+    @CachePut(value = "emails", key = "#result.id()")
     public EmailDataResponse update(Long id, EmailDataRequest request) {
         return emailDataRepository.findWithUserById(id)
                 .filter(data -> data.getUser().getId().equals(userHolder.getUser().getId()))
@@ -38,6 +51,7 @@ public class EmailDataService {
                 .orElseThrow(throwEmailDataNotFoundException(id));
     }
 
+    @CacheEvict(value = "emails", key = "#id")
     public DeleteResponse delete(Long id) {
         return emailDataRepository.findWithUserById(id)
                 .filter(data -> data.getUser().getId().equals(userHolder.getUser().getId()))

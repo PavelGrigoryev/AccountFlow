@@ -1,3 +1,7 @@
+###findById
+GET http://localhost:8080/phones/1
+Accept: application/json
+
 ###save
 POST http://localhost:8080/phones
 Accept: application/json
