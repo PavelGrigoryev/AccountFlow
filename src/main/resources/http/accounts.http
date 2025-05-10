@@ -1,3 +1,14 @@
 ###findWithUserById
 GET http://localhost:8080/accounts/1
 Accept: application/json
+
+###save
+POST http://localhost:8080/accounts
+Accept: application/json
+Content-Type: application/json
+USER_ID: eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzQ2OTEyNDA4LCJleHAiOjE3NDY5MTMzMDh9.55ih_KNFz-7kQsA00runvgydz0CGrwjOR2KTmrfMfmRdJaOZVvX735OClsDl6S4E
+
+{
+  "toUserId" : 2,
+  "amount" : 50
+}

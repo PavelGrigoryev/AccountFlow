@@ -15,7 +15,7 @@ public class UserIdHeaderInterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(userIdHeaderInterceptor)
-                .addPathPatterns("/phones/**", "/emails/**");
+                .addPathPatterns("/phones/**", "/emails/**", "/accounts/**");
     }
 
 }

@@ -4,6 +4,7 @@ import com.grigoryev.accountflow.aspect.Loggable;
 import com.grigoryev.accountflow.dto.error.IncorrectData;
 import com.grigoryev.accountflow.dto.error.ValidationErrorResponse;
 import com.grigoryev.accountflow.dto.error.Violation;
+import com.grigoryev.accountflow.exception.TransferFundsException;
 import com.grigoryev.accountflow.exception.InvalidPasswordException;
 import com.grigoryev.accountflow.exception.NotFoundException;
 import com.grigoryev.accountflow.exception.UserIdHeaderNotValidException;
@@ -44,6 +45,11 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(InvalidPasswordException.class)
     public ResponseEntity<IncorrectData> handleInvalidPasswordException(InvalidPasswordException exception) {
         return getResponse(exception.getClass().getSimpleName(), exception.getMessage(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(TransferFundsException.class)
+    public ResponseEntity<IncorrectData> handleTransferFundsException(TransferFundsException exception) {
+        return getResponse(exception.getClass().getSimpleName(), exception.getMessage(), HttpStatus.NOT_ACCEPTABLE);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
