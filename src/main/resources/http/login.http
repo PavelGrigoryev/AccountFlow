@@ -1,0 +1,19 @@
+###loginByPhone
+POST http://localhost:8080/login/phone
+Accept: application/json
+Content-Type: application/json
+
+{
+  "phone": "79109876543",
+  "password": "ivan12345678"
+}
+
+###loginByEmail
+POST http://localhost:8080/login/email
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "ivan.ivanov@example.com",
+  "password": "ivan12345678"
+}

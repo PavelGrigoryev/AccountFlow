@@ -1,7 +1,12 @@
 package com.grigoryev.accountflow.service;
 
+import com.grigoryev.accountflow.dto.login.LoginEmailRequest;
+import com.grigoryev.accountflow.dto.login.LoginPhoneRequest;
+import com.grigoryev.accountflow.dto.login.LoginResponse;
 import com.grigoryev.accountflow.dto.user.UserSearchRequest;
 import com.grigoryev.accountflow.dto.user.UserSearchResponse;
+import com.grigoryev.accountflow.exception.InvalidPasswordException;
+import com.grigoryev.accountflow.exception.UserNotFoundException;
 import com.grigoryev.accountflow.mapper.UserMapper;
 import com.grigoryev.accountflow.model.User;
 import com.grigoryev.accountflow.repository.UserRepository;
@@ -17,12 +22,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final JwtService jwtService;
 
-    @Transactional(readOnly = true)
     public List<UserSearchResponse> searchUsers(UserSearchRequest request) {
         Pageable pageable = PageRequest.of(
                 request.page() == null ? 0 : request.page(),
@@ -32,6 +38,24 @@ public class UserService {
                 .map(userMapper::toUserSearchResponse)
                 .stream()
                 .toList();
+    }
+
+    public LoginResponse loginByPhone(LoginPhoneRequest request) {
+        User user = userRepository.findByPhone(request.phone())
+                .orElseThrow(() -> new UserNotFoundException("User with phone = %s is not found".formatted(request.phone())));
+        if (!request.password().equals(user.getPassword())) {
+            throw new InvalidPasswordException("Invalid password");
+        }
+        return new LoginResponse(jwtService.generateToken(user.getId()));
+    }
+
+    public LoginResponse loginByEmail(LoginEmailRequest request) {
+        User user = userRepository.findByEmail(request.email())
+                .orElseThrow(() -> new UserNotFoundException("User with email = %s is not found".formatted(request.email())));
+        if (!request.password().equals(user.getPassword())) {
+            throw new InvalidPasswordException("Invalid password");
+        }
+        return new LoginResponse(jwtService.generateToken(user.getId()));
     }
 
 }

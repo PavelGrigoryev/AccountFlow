@@ -4,8 +4,10 @@ import com.grigoryev.accountflow.aspect.Loggable;
 import com.grigoryev.accountflow.dto.error.IncorrectData;
 import com.grigoryev.accountflow.dto.error.ValidationErrorResponse;
 import com.grigoryev.accountflow.dto.error.Violation;
+import com.grigoryev.accountflow.exception.InvalidPasswordException;
 import com.grigoryev.accountflow.exception.NotFoundException;
 import com.grigoryev.accountflow.exception.UserIdHeaderNotValidException;
+import io.jsonwebtoken.JwtException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +34,16 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<IncorrectData> handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
         return getResponse(exception.getClass().getSimpleName(), exception.getMessage(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(JwtException.class)
+    public ResponseEntity<IncorrectData> handleJwtException(JwtException exception) {
+        return getResponse(exception.getClass().getSimpleName(), exception.getMessage(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<IncorrectData> handleInvalidPasswordException(InvalidPasswordException exception) {
+        return getResponse(exception.getClass().getSimpleName(), exception.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
