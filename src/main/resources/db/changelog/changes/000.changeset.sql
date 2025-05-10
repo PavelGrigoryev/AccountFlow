@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS "user"
     id            BIGSERIAL PRIMARY KEY,
     name          VARCHAR(500),
     date_of_birth DATE,
-    password      VARCHAR(500) NOT NULL
+    password      VARCHAR(500) NOT NULL CHECK (LENGTH(password) >= 8)
 );
 
 CREATE TABLE IF NOT EXISTS account

@@ -4,6 +4,7 @@ import com.grigoryev.accountflow.dto.DeleteResponse;
 import com.grigoryev.accountflow.dto.phone.PhoneDataRequest;
 import com.grigoryev.accountflow.dto.phone.PhoneDataResponse;
 import com.grigoryev.accountflow.service.PhoneDataService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +24,12 @@ public class PhoneDataController {
     private final PhoneDataService phoneDataService;
 
     @PostMapping
-    public ResponseEntity<PhoneDataResponse> save(@RequestBody PhoneDataRequest request) {
+    public ResponseEntity<PhoneDataResponse> save(@RequestBody @Valid PhoneDataRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(phoneDataService.save(request));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<PhoneDataResponse> update(@PathVariable Long id, @RequestBody PhoneDataRequest request) {
+    public ResponseEntity<PhoneDataResponse> update(@PathVariable Long id, @Valid @RequestBody PhoneDataRequest request) {
         return ResponseEntity.ok(phoneDataService.update(id, request));
     }
 

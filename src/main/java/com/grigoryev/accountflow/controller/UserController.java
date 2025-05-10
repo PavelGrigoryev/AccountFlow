@@ -3,6 +3,7 @@ package com.grigoryev.accountflow.controller;
 import com.grigoryev.accountflow.dto.user.UserSearchRequest;
 import com.grigoryev.accountflow.dto.user.UserSearchResponse;
 import com.grigoryev.accountflow.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/search")
-    public ResponseEntity<List<UserSearchResponse>> searchUsers(UserSearchRequest request) {
+    public ResponseEntity<List<UserSearchResponse>> searchUsers(@Valid UserSearchRequest request) {
         return ResponseEntity.ok(userService.searchUsers(request));
     }
 

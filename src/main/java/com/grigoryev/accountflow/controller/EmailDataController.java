@@ -4,6 +4,7 @@ import com.grigoryev.accountflow.dto.DeleteResponse;
 import com.grigoryev.accountflow.dto.email.EmailDataRequest;
 import com.grigoryev.accountflow.dto.email.EmailDataResponse;
 import com.grigoryev.accountflow.service.EmailDataService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +24,12 @@ public class EmailDataController {
     private final EmailDataService emailDataService;
 
     @PostMapping
-    public ResponseEntity<EmailDataResponse> save(@RequestBody EmailDataRequest request) {
+    public ResponseEntity<EmailDataResponse> save(@RequestBody @Valid EmailDataRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(emailDataService.save(request));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<EmailDataResponse> update(@PathVariable Long id, @RequestBody EmailDataRequest request) {
+    public ResponseEntity<EmailDataResponse> update(@PathVariable Long id, @RequestBody @Valid EmailDataRequest request) {
         return ResponseEntity.ok(emailDataService.update(id, request));
     }
 

@@ -10,6 +10,9 @@ import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @UtilityClass
 public class UserSpecification {
 
@@ -17,8 +20,9 @@ public class UserSpecification {
         return (root, query, cb) -> {
             Predicate predicate = cb.conjunction();
 
-            if (request.dateOfBirth() != null) {
-                predicate = cb.and(predicate, cb.greaterThan(root.get("dateOfBirth"), request.dateOfBirth()));
+            if (StringUtils.isNotBlank(request.dateOfBirth())) {
+                LocalDate convertedDate = LocalDate.parse(request.dateOfBirth(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+                predicate = cb.and(predicate, cb.greaterThan(root.get("dateOfBirth"), convertedDate));
             }
 
             if (StringUtils.isNotBlank(request.phone())) {

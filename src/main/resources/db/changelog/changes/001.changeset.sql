@@ -11,7 +11,8 @@ VALUES ('Иван Иванов', '1990-01-15', 'ivan12345678'),
        ('Дмитрий Попов', '1987-02-28', 'dmitry66778899'),
        ('Ольга Морозова', '1991-06-18', 'olga22334455'),
        ('Сергей Козлов', '1989-04-25', 'sergey44556677'),
-       ('Наталья Лебедева', '1994-08-03', 'natalia77889900');
+       ('Наталья Лебедева', '1994-08-03', 'natalia77889900'),
+       ('Иван Старовойтов', '1986-05-30', 'ivan87654321');
 
 INSERT INTO account (user_id, balance)
 VALUES (1, 5000.00),
@@ -23,7 +24,8 @@ VALUES (1, 5000.00),
        (7, 6000.00),
        (8, 3500.00),
        (9, 8000.00),
-       (10, 2500.00);
+       (10, 2500.00),
+       (11, 1000.00);
 
 INSERT INTO email_data (user_id, email)
 VALUES (1, 'ivan.ivanov@example.com'),
@@ -37,7 +39,8 @@ VALUES (1, 'ivan.ivanov@example.com'),
        (7, 'dmitry.popov@example.com'),
        (8, 'olga.morozova@example.com'),
        (9, 'sergey.kozlov@example.com'),
-       (10, 'natalia.lebedeva@example.com');
+       (10, 'natalia.lebedeva@example.com'),
+       (11, 'ivan.staravoit@example.com');
 
 INSERT INTO phone_data (user_id, phone)
 VALUES (1, '79207865432'),
@@ -51,4 +54,5 @@ VALUES (1, '79207865432'),
        (7, '79267865439'),
        (8, '79277865440'),
        (9, '79287865441'),
-       (10, '79297865442');
+       (10, '79297865442'),
+       (11, '79297865443');
