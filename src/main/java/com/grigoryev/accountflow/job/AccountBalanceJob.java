@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 
 @Slf4j
@@ -30,13 +31,12 @@ public class AccountBalanceJob {
     public void increaseBalances() {
         accountRepository.findAll()
                 .parallelStream()
-                .filter(account -> account.getBalance() != null)
                 .forEach(account -> {
                     Long accountId = account.getId();
                     BigDecimal balance = account.getBalance();
                     BigDecimal initialDeposit = initialDeposits.computeIfAbsent(accountId, k -> balance);
-                    BigDecimal newBalance = balance.multiply(increaseMultiplier);
-                    BigDecimal maxBalance = initialDeposit.multiply(maxMultiplier);
+                    BigDecimal newBalance = balance.multiply(increaseMultiplier).setScale(2, RoundingMode.HALF_UP);
+                    BigDecimal maxBalance = initialDeposit.multiply(maxMultiplier).setScale(2, RoundingMode.HALF_UP);
 
                     if (balance.compareTo(maxBalance) >= 0) {
                         log.info("Balance for account with id = {} already at max: {}", accountId, balance);
