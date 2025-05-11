@@ -1,0 +1,5 @@
+{
+  "exception": "UserNotFoundException",
+  "errorMessage": "User with id = 111 is not found",
+  "errorCode": "404 NOT_FOUND"
+}

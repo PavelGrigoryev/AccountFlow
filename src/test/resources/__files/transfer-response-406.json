@@ -1,0 +1,5 @@
+{
+  "exception": "TransferFundsException",
+  "errorMessage": "Cannot transfer to the same user",
+  "errorCode": "406 NOT_ACCEPTABLE"
+}

@@ -1,0 +1,13 @@
+{
+  "errorMessage": "409 CONFLICT",
+  "violations": [
+    {
+      "fieldName": "amount",
+      "message": "must be greater than 0"
+    },
+    {
+      "fieldName": "toUserId",
+      "message": "must not be null"
+    }
+  ]
+}

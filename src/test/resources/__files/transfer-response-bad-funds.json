@@ -1,0 +1,5 @@
+{
+  "exception": "TransferFundsException",
+  "errorMessage": "Insufficient funds",
+  "errorCode": "406 NOT_ACCEPTABLE"
+}

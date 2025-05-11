@@ -1,0 +1,5 @@
+{
+  "exception": "JwtException",
+  "errorMessage": "Invalid/Expired JWT token",
+  "errorCode": "403 FORBIDDEN"
+}

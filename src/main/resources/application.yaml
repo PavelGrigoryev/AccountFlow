@@ -25,3 +25,5 @@ balance:
   initial-delay: 30000
   increase-multiplier: 1.1
   max-multiplier: 2.07
+scheduling:
+  enabled: true

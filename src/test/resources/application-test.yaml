@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: AccountFlow
+    description: "Приложение для работы со счетами пользователей"
+    version: 1.0
+  datasource:
+    username: test
+    password: test
+scheduling:
+  enabled: false

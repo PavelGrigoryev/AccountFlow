@@ -1,0 +1,5 @@
+{
+  "exception": "UserIdHeaderNotValidException",
+  "errorMessage": "USER_ID is null or blank",
+  "errorCode": "403 FORBIDDEN"
+}
