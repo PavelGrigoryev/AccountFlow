@@ -1,6 +1,7 @@
 package com.grigoryev.accountflow.controller;
 
 import com.grigoryev.accountflow.aspect.Loggable;
+import com.grigoryev.accountflow.controller.openapi.AccountOpenApi;
 import com.grigoryev.accountflow.dto.account.AccountResponse;
 import com.grigoryev.accountflow.dto.account.TransferRequest;
 import com.grigoryev.accountflow.dto.account.TransferResponse;
@@ -19,15 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/accounts")
-public class AccountController {
+public class AccountController implements AccountOpenApi {
 
     private final AccountService accountService;
 
+    @Override
     @GetMapping("/{id}")
     public ResponseEntity<AccountResponse> findWithUserById(@PathVariable Long id) {
         return ResponseEntity.ok(accountService.findWithUserById(id));
     }
 
+    @Override
     @PostMapping
     public ResponseEntity<TransferResponse> transferMoney(@RequestBody @Valid TransferRequest request) {
         return ResponseEntity.ok(accountService.transferMoney(request));

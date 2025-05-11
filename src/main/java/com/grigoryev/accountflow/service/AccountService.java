@@ -5,6 +5,7 @@ import com.grigoryev.accountflow.dto.account.TransferRequest;
 import com.grigoryev.accountflow.dto.account.TransferResponse;
 import com.grigoryev.accountflow.exception.AccountNotFoundException;
 import com.grigoryev.accountflow.exception.TransferFundsException;
+import com.grigoryev.accountflow.exception.UserNotFoundException;
 import com.grigoryev.accountflow.interceptor.UserHolder;
 import com.grigoryev.accountflow.mapper.AccountMapper;
 import com.grigoryev.accountflow.model.Account;
@@ -64,7 +65,7 @@ public class AccountService {
             throw new TransferFundsException("Cannot transfer to the same user");
         }
         if (!userRepository.existsById(toUserId)) {
-            throw new TransferFundsException("Recipient user is not found");
+            throw new UserNotFoundException("Recipient user with id = %d is not found".formatted(toUserId));
         }
     }
 

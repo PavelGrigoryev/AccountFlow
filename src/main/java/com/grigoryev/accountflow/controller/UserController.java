@@ -1,6 +1,7 @@
 package com.grigoryev.accountflow.controller;
 
 import com.grigoryev.accountflow.aspect.Loggable;
+import com.grigoryev.accountflow.controller.openapi.UserOpenApi;
 import com.grigoryev.accountflow.dto.user.UserSearchRequest;
 import com.grigoryev.accountflow.dto.user.UserSearchResponse;
 import com.grigoryev.accountflow.service.UserService;
@@ -17,10 +18,11 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/users")
-public class UserController {
+public class UserController implements UserOpenApi {
 
     private final UserService userService;
 
+    @Override
     @GetMapping("/search")
     public ResponseEntity<List<UserSearchResponse>> searchUsers(@Valid UserSearchRequest request) {
         return ResponseEntity.ok(userService.searchUsers(request));

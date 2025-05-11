@@ -1,6 +1,8 @@
 spring:
   application:
     name: AccountFlow
+    description: "Приложение для работы со счетами пользователей"
+    version: 1.0
   datasource:
     url: jdbc:postgresql://localhost:5432/account_flow
     username: pavel

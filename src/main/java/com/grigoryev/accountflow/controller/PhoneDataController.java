@@ -1,6 +1,7 @@
 package com.grigoryev.accountflow.controller;
 
 import com.grigoryev.accountflow.aspect.Loggable;
+import com.grigoryev.accountflow.controller.openapi.PhoneDataOpenApi;
 import com.grigoryev.accountflow.dto.DeleteResponse;
 import com.grigoryev.accountflow.dto.phone.PhoneDataRequest;
 import com.grigoryev.accountflow.dto.phone.PhoneDataResponse;
@@ -22,25 +23,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/phones")
-public class PhoneDataController {
+public class PhoneDataController implements PhoneDataOpenApi {
 
     private final PhoneDataService phoneDataService;
 
+    @Override
     @GetMapping("/{id}")
     public ResponseEntity<PhoneDataResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(phoneDataService.findById(id));
     }
 
+    @Override
     @PostMapping
     public ResponseEntity<PhoneDataResponse> save(@RequestBody @Valid PhoneDataRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(phoneDataService.save(request));
     }
 
+    @Override
     @PatchMapping("/{id}")
     public ResponseEntity<PhoneDataResponse> update(@PathVariable Long id, @Valid @RequestBody PhoneDataRequest request) {
         return ResponseEntity.ok(phoneDataService.update(id, request));
     }
 
+    @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<DeleteResponse> delete(@PathVariable Long id) {
         return ResponseEntity.ok(phoneDataService.delete(id));
